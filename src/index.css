@@ -1,0 +1,386 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 24 95% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 24 95% 53%;
+
+    --radius: 0.5rem;
+
+    /* Custom colors */
+    --orange: 24 95% 53%;
+    --orange-dark: 24 95% 45%;
+    --dark: 0 0% 15%;
+    --dark-bg: 0 0% 18%;
+    --gray-light: 0 0% 96%;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 24 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 24 95% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-montserrat;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply relative text-foreground font-medium transition-colors duration-300 hover:text-primary;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .service-card {
+    @apply bg-white rounded-xl shadow-md transition-all duration-300 cursor-pointer;
+  }
+
+  .service-card:hover {
+    @apply shadow-xl -translate-y-2;
+  }
+
+  .service-card:hover .service-icon {
+    @apply scale-110;
+  }
+
+  .shimmer-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  .about-image-container {
+    @apply relative overflow-hidden rounded-lg;
+  }
+
+  .about-image-container::before {
+    content: '';
+    @apply absolute inset-0 bg-primary/0 transition-all duration-500 z-10;
+  }
+
+  .about-image-container:hover::before {
+    @apply bg-primary/20;
+  }
+
+  .about-image-container img {
+    @apply transition-transform duration-700;
+  }
+
+  .about-image-container:hover img {
+    @apply scale-110;
+  }
+
+  .info-card {
+    @apply bg-white border-l-4 border-primary p-6 shadow-lg transition-all duration-300;
+  }
+
+  .info-card:hover {
+    @apply shadow-xl translate-x-2;
+  }
+
+  .carousel-arrow {
+    @apply absolute top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 shadow-lg z-20;
+  }
+
+  .carousel-arrow:hover {
+    @apply bg-white scale-110;
+  }
+
+  .carousel-dot {
+    @apply w-3 h-3 rounded-full bg-white/50 transition-all duration-300 cursor-pointer;
+  }
+
+  .carousel-dot.active {
+    @apply bg-white w-8;
+  }
+
+  .whatsapp-button {
+    @apply fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-xl z-50 transition-all duration-300;
+  }
+
+  .whatsapp-button:hover {
+    @apply scale-110 shadow-2xl;
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(249, 115, 22, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes flipCard {
+  0% {
+    transform: perspective(1000px) rotateY(-90deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes pageFlip {
+  0% {
+    transform: perspective(1200px) rotateY(-180deg) rotateX(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+.animate-shine {
+  animation: shine 1.5s ease-in-out infinite;
+}
+
+/* WhatsApp Button - Responsivo */
+.whatsapp-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #25d366 0%, #20ba5c 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+  transition: all 0.3s ease;
+  z-index: 40;
+  border: none;
+  cursor: pointer;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-button:active {
+  transform: scale(0.95);
+}
+
+/* Mobile - WhatsApp Button responsivo */
+@media (max-width: 768px) {
+  .whatsapp-button {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+  }
+
+  .whatsapp-button svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .whatsapp-button {
+    bottom: 1rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .whatsapp-button svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-button,
+  .pulse-glow,
+  .animate-shine {
+    animation: none;
+  }
+
+  .whatsapp-button:hover {
+    transform: none;
+  }
+}
+
+/* Mobile - Posicionamento e animação das imagens do About */
+@media (max-width: 767px) {
+  [data-image-stack="true"] {
+    height: 280px !important;
+    perspective: 1200px;
+  }
+
+  [data-image-stack="true"] > div {
+    position: absolute !important;
+    width: clamp(150px, 85%, 280px) !important;
+    height: clamp(200px, 85%, 350px) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-left: 0 !important;
+    top: 50% !important;
+    margin-top: -140px !important;
+    right: auto !important;
+    animation: pageFlip 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important;
+  }
+
+  [data-image-stack="true"] > div:nth-child(1) {
+    z-index: 20 !important;
+    animation: pageFlip 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important;
+  }
+
+  [data-image-stack="true"] > div:nth-child(2) {
+    z-index: 10 !important;
+    animation: pageFlip 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important;
+    animation-delay: 0.25s !important;
+    transform: translateX(-50%) translateY(-15px) !important;
+  }
+}
